@@ -1,4 +1,8 @@
 #include <print>
+#include <string_view>
+#include <vector>
+
+using namespace std::literals;
 
 // Simple format
 // =============
@@ -31,8 +35,68 @@
 //
 //
 
+enum class Token_type
+{
+    Keyword,
+    Identifier,
+    Number,
+    String,
+    Operator,
+};
+
+class Token
+{
+  public:
+    explicit Token ( std::string_view content, Token_type type ) : content{ content }, type{ type }
+    {
+    }
+
+  private:
+    std::string_view content;
+    Token_type       type;
+};
+
+auto tokenise ( std::string_view ) -> std::vector<Token>;
+
+auto format ( std::vector<Token> ) -> std::string;
+
 auto main () -> int
 {
-    std::println ( "Hello, 🌎!" );
+    // What we got:
+    // ```
+    // local a=21
+    //
+    // local b=63
+    //
+    // local answer=a+b/3
+    //
+    // print("The answer is",answer)
+    // ```
+    // What we want:
+    // ```
+    // local a = 21
+    //
+    // local b = 63
+    //
+    // local answer = a + b / 3
+    //
+    // print("The answer is", answer)
+    // ```
+    auto code{
+        R"x(
+local a=21
+
+local b=63
+
+local answer=a+b/3
+
+print("The answer is", answer)
+		)x"s };
+
+    auto tokens{ tokenise ( code ) };
+    auto result{ format ( tokens ) };
+
+    std::println ( "Output:\n\n{}\n", result );
+
     return 0;
 }
