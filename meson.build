@@ -8,6 +8,8 @@ project(
 
 sources = [
   'main.cpp',
+  'format.cpp',
+  'tokenise.cpp',
 ]
 
 exe = executable(

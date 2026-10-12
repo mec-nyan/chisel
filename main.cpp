@@ -1,8 +1,8 @@
 #include <print>
-#include <string_view>
-#include <vector>
 
 using namespace std::literals;
+
+#include "format.hpp"
 
 // Simple format
 // =============
@@ -35,30 +35,6 @@ using namespace std::literals;
 //
 //
 
-enum class Token_type
-{
-    Keyword,
-    Identifier,
-    Number,
-    String,
-    Operator,
-};
-
-class Token
-{
-  public:
-    explicit Token ( std::string_view content, Token_type type ) : content{ content }, type{ type }
-    {
-    }
-
-  private:
-    std::string_view content;
-    Token_type       type;
-};
-
-auto tokenise ( std::string_view ) -> std::vector<Token>;
-
-auto format ( std::vector<Token> ) -> std::string;
 
 auto main () -> int
 {
