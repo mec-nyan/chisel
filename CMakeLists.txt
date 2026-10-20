@@ -10,9 +10,9 @@ add_executable(chisel)
 
 target_sources(chisel
 	PRIVATE
-		main.cpp
-		tokenise.cpp
-		format.cpp
+		src/main.cpp
+		src/tokenise.cpp
+		src/format.cpp
 )
 
 find_package(Catch2 REQUIRED)
@@ -21,8 +21,8 @@ add_executable(tests)
 
 target_sources(tests
 	PRIVATE
-		test.cpp
-		tokenise.cpp
+		tests/test.cpp
+		src/tokenise.cpp
 )
 
 target_link_libraries(tests
