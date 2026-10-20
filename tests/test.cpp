@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "tokenise.hpp"
+#include "../src/tokenise.hpp"
 
 using namespace std::literals::string_view_literals;
 
