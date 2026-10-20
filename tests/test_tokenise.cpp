@@ -11,28 +11,25 @@ TEST_CASE ( "no code, no tokens", "[tokenise]" )
     REQUIRE ( tokens.size() == 0 );
 }
 
-TEST_CASE ( "get token information", "[tokenise]" )
+TEST_CASE ( "identify each token correctly", "[tokenise]" )
 {
-    SECTION ( "single line comments are one token" )
+    SECTION ( "single line comments" )
     {
-        auto tokens{ tokenise ( "-- This is a comment"sv ) };
+        auto code{ "-- This is a comment"sv };
+        auto tokens{ tokenise ( code ) };
 
         REQUIRE ( tokens.size() == 1 );
-    }
-
-    SECTION ( "tokens must have the correct content" )
-    {
-        auto code{ "-- This is a comment"sv };
-        auto tokens{ tokenise ( code ) };
-
         REQUIRE ( tokens[ 0 ].content() == code );
+        REQUIRE ( tokens[ 0 ].type() == TokenType::ShortComment );
     }
 
-    SECTION ( "tokens must have the correct type" )
+    SECTION ( "multi-line comments" )
     {
-        auto code{ "-- This is a comment"sv };
+        auto code{ "--[[ This is a comment\nacross\nseveral\nlines\n--]]"sv };
         auto tokens{ tokenise ( code ) };
 
-        REQUIRE ( tokens[ 0 ].type() == TokenType::ShortComment );
+        REQUIRE ( tokens.size() == 1 );
+        REQUIRE ( tokens[ 0 ].content() == code );
+        REQUIRE ( tokens[ 0 ].type() == TokenType::LongComment );
     }
 }
