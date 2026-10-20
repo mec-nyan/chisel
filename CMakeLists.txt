@@ -21,7 +21,7 @@ add_executable(tests)
 
 target_sources(tests
 	PRIVATE
-		tests/test.cpp
+		tests/test_tokenise.cpp
 		src/tokenise.cpp
 )
 
