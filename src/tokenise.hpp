@@ -37,3 +37,29 @@ class Token
 };
 
 auto tokenise ( std::string_view ) -> std::vector<Token>;
+
+// `tokenise` will use these internally.
+// TODO: What about Unicode (UTF-8 may not be "chars").
+// TODO: How are we going to support multiple languages?
+
+auto is_a_valid_id_start ( char ) -> bool;
+
+auto is_a_valid_id_char ( char ) -> bool;
+
+auto is_a_keyword ( std::string_view ) -> bool;
+
+auto is_a_valid_number_start ( char ) -> bool;
+
+auto is_a_valid_number_char ( char ) -> bool;
+
+auto is_a_number ( std::string_view ) -> bool;
+
+auto is_an_operator ( char ) -> bool;
+
+auto is_an_operator ( std::string_view ) -> bool;
+
+auto starts_a_comment ( std::string_view ) -> bool;
+
+auto starts_a_multiline_comment ( std::string_view ) -> bool;
+
+auto ends_a_multiline_comment ( std::string_view ) -> bool;
