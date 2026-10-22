@@ -1,6 +1,7 @@
 #include "../src/tokenise.hpp"
+
 #include <catch2/catch_test_macros.hpp>
-#include <limits>
+
 #include <locale>
 #include <vector>
 
@@ -17,8 +18,10 @@ TEST_CASE ( "identifier start", "[tokenise_helpers]" )
 {
     SECTION ( "valid" )
     {
-        // Test every possible value of "char" (maybe this is too much...).
-        for (char character{ '\0' }; character <= std::numeric_limits<char>::max(); ++character)
+        // I'm testing from character 0x00 (NUL) to 0x7E (~).  Those are all the ASCII characters.
+        // I'd like to test for every possible value of char but that's an unsigned long in many
+        // implementations...
+        for (char character{ '\0' }; character <= '~'; ++character)
         {
             // Identifiers can begin with a lower case letter, an upper case letter or an
             // underscore.
@@ -38,8 +41,10 @@ TEST_CASE ( "identifier character", "[tokenise_helpers]" )
 {
     SECTION ( "valid" )
     {
-        // Test every possible value of "char" (maybe this is too much...).
-        for (char character{ '\0' }; character <= std::numeric_limits<char>::max(); ++character)
+        // I'm testing from character 0x00 (NUL) to 0x7E (~).  Those are all the ASCII characters.
+        // I'd like to test for every possible value of char but that's an unsigned long in many
+        // implementations...
+        for (char character{ '\0' }; character <= '~'; ++character)
         {
             // Identifiers can contain lower case letters, upper case letters, digits and
             // underscore.

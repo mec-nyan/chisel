@@ -1,4 +1,5 @@
 #include "tokenise.hpp"
+#include <locale>
 
 
 auto tokenise ( std::string_view _ ) -> std::vector<Token>
@@ -10,14 +11,14 @@ auto tokenise ( std::string_view _ ) -> std::vector<Token>
 // Helpers.
 
 
-auto is_a_valid_id_start ( char ) -> bool
+auto is_a_valid_id_start ( char c ) -> bool
 {
-    return false;
+    return c == '_' || std::isalpha ( c, std::locale ( "en_US.UTF8" ) );
 }
 
-auto is_a_valid_id_char ( char ) -> bool
+auto is_a_valid_id_char ( char c ) -> bool
 {
-    return false;
+    return c == '_' || std::isalnum ( c, std::locale ( "en_US.UTF8" ) );
 }
 
 auto is_a_keyword ( std::string_view ) -> bool
