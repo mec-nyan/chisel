@@ -60,14 +60,14 @@ TEST_CASE ( "identifier character", "[tokenise_helpers]" )
     }
 }
 
-TEST_CASE ( "keywords", "[tokenise_helpers]" )
+TEST_CASE ( "lua keywords", "[tokenise_helpers]" )
 {
     SECTION ( "yes they are" )
     {
-        std::vector lua_keywords{ "and",  "break", "do",       "else",   "elseif", "end",
-                                  "for",  "false", "function", "if",     "in",     "local",
-                                  "nil",  "not",   "or",       "repeat", "return", "then",
-                                  "true", "until", "while" };
+        std::vector<std::string> lua_keywords{
+            "and",   "break",    "do",     "else", "elseif", "end",   "for",
+            "false", "function", "if",     "in",   "local",  "nil",   "not",
+            "or",    "repeat",   "return", "then", "true",   "until", "while" };
 
         for (const auto &kw : lua_keywords)
         {

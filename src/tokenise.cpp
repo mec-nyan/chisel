@@ -1,5 +1,6 @@
 #include "tokenise.hpp"
 #include <locale>
+#include <unordered_set>
 
 
 auto tokenise ( std::string_view _ ) -> std::vector<Token>
@@ -21,9 +22,14 @@ auto is_a_valid_id_char ( char c ) -> bool
     return c == '_' || std::isalnum ( c, std::locale ( "en_US.UTF8" ) );
 }
 
-auto is_a_keyword ( std::string_view ) -> bool
+auto is_a_keyword ( std::string_view word ) -> bool
 {
-    return false;
+    std::unordered_set<std::string_view> lua_keywords{
+        "and",   "break",    "do",     "else", "elseif", "end",   "for",
+        "false", "function", "if",     "in",   "local",  "nil",   "not",
+        "or",    "repeat",   "return", "then", "true",   "until", "while" };
+
+    return lua_keywords.contains ( word );
 }
 
 auto is_a_valid_number_start ( char ) -> bool
