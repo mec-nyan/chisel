@@ -25,7 +25,7 @@ TEST_CASE ( "identifier start", "[tokenise_helpers]" )
         {
             // Identifiers can begin with a lower case letter, an upper case letter or an
             // underscore.
-            if (std::isalpha ( character, std::locale ( "C" ) ) || character == '_')
+            if (std::isalpha ( character, std::locale ( "en_US.UTF8" ) ) || character == '_')
             {
                 REQUIRE ( is_a_valid_id_start ( character ) );
             }
@@ -48,7 +48,7 @@ TEST_CASE ( "identifier character", "[tokenise_helpers]" )
         {
             // Identifiers can contain lower case letters, upper case letters, digits and
             // underscore.
-            if (std::isalnum ( character, std::locale ( "C" ) ) || character == '_')
+            if (std::isalnum ( character, std::locale ( "en_US.UTF8" ) ) || character == '_')
             {
                 REQUIRE ( is_a_valid_id_char ( character ) );
             }
