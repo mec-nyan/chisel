@@ -1,6 +1,7 @@
 #include "../src/tokenise.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <limits>
+#include <locale>
 #include <vector>
 
 
@@ -21,8 +22,7 @@ TEST_CASE ( "identifier start", "[tokenise_helpers]" )
         {
             // Identifiers can begin with a lower case letter, an upper case letter or an
             // underscore.
-            if (( character >= 'A' && character <= 'Z' ) ||
-                ( character >= 'a' && character <= 'z' ) || ( character == '_' ))
+            if (std::isalpha ( character, std::locale ( "C" ) ) || character == '_')
             {
                 REQUIRE ( is_a_valid_id_start ( character ) );
             }
@@ -38,22 +38,19 @@ TEST_CASE ( "identifier character", "[tokenise_helpers]" )
 {
     SECTION ( "valid" )
     {
-        auto valid_chars{ "_abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"s };
-
-        for (const auto &c : valid_chars)
+        // Test every possible value of "char" (maybe this is too much...).
+        for (char character{ '\0' }; character <= std::numeric_limits<char>::max(); ++character)
         {
-            REQUIRE ( is_a_valid_id_char ( c ) );
-        }
-    }
-
-    SECTION ( "invalid" )
-    {
-        // TODO: Better ASCII subset.
-        auto invalid_chars{ "+-=*/%<>"s };
-
-        for (const auto &c : invalid_chars)
-        {
-            REQUIRE_FALSE ( is_a_valid_id_char ( c ) );
+            // Identifiers can contain lower case letters, upper case letters, digits and
+            // underscore.
+            if (std::isalnum ( character, std::locale ( "C" ) ) || character == '_')
+            {
+                REQUIRE ( is_a_valid_id_char ( character ) );
+            }
+            else
+            {
+                REQUIRE_FALSE ( is_a_valid_id_char ( character ) );
+            }
         }
     }
 }
