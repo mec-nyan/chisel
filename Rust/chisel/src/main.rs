@@ -7,7 +7,44 @@
 use std::collections::HashSet;
 
 fn main() {
-    println!("Hello, world!");
+    let code = "local a = 41";
+
+    // A simple example/test.  This is not the actual program!
+    // We'll create token references and with that we're going to make the output string, by
+    // applying the formatting rules.
+
+    let mut in_id = false;
+    let mut token = String::new();
+
+    for c in code.chars() {
+        if !in_id && names_can_begin_with(c) {
+            token.clear();
+            token.push(c);
+            in_id = true;
+            continue;
+        }
+
+        if in_id && names_can_contain(c) {
+            token.push(c);
+            continue;
+        }
+
+        if in_id && !names_can_contain(c) {
+            in_id = false;
+            break;
+        }
+    }
+
+    if token.len() == 0 {
+        eprintln!("No tokens found!");
+    }
+
+    if is_a_name(&token) {
+        println!("'{}' is a valid name.", &token);
+        if is_a_keyword(&token) {
+            println!("\tAnd a keyword!");
+        }
+    }
 }
 
 fn names_can_begin_with(c: char) -> bool {
