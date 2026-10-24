@@ -48,3 +48,61 @@ an _operator_ and a _field/method_ in this case).
 
 In Computer Science and programming is common to call this "atoms" _tokens_, so I'll follow that
 convention from now on.
+
+Each token has a particular meaning or _semantics_.  We're going to rely on this to say _how do we
+want our code to look like_ without changing it's meaning.
+
+From now on, when we talk about _source code_ I'll assume valid _Lua code_.  Still, we'll strive to
+provide a generic enough solution to extend later on to support other languages.  So **Lua** it is.
+
+For the most part (assuming the code is valid _(this is **not** a linting tool)_) white space
+doesn't change the semantics of the code.  But it can dramatically improve our code's _readability_.
+
+A few examples:
+
+```lua
+local function point:move (x,y)  -- Valid, but ugly.
+    --
+end
+
+local function point:move(x, y)  -- A lot better!
+    --
+end
+
+```
+
+```lua
+local x=21*2      -- Seriously?
+
+local x = 21 * 2  -- Now we're talking.
+
+```
+
+What "looks good" and "reads well" is somehow subjective and ultimately a matter of personal taste
+(the computer doesn't care about it).  Yet it becomes crucially important when it comes to
+maintaining the code.  You may not care about how the code looks _now_, but eventually it will
+become more and more important as the time passes and/or the codebase grows.
+
+For that matter, I found several styles pleasing to the eyes i.e.:
+
+```lua
+function do(a, b, c)       -- Looks nice to me.
+    --
+end
+
+function do (a, b, c)      -- It's alright.
+    --
+end
+
+function do ( a, b, c )    -- It's starting to get on my nerves ...
+    --
+end
+
+function do ( a , b , c )  -- Nop ...
+    --                     -- (Although I must admit it reads quite well ...)
+end
+```
+
+So when it comes to apply the formatting, we may choose something that's not exactly what we want
+but may be easier to implement in the beginning.  Later on we can tackle more complex rules and
+refine the implementation further.
