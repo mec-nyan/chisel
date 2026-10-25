@@ -3,6 +3,8 @@
 A simple format tool.
 This repo contains both the **C++** and the **Rust** versions.
 
+[Read a detailed description here.](docs/README.md)
+
 Have fun!
 
 [![C++](https://img.shields.io/badge/C%2B%2B-%3E%3D23-blue?style=for-the-badge)](https://isocpp.org/)

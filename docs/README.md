@@ -9,9 +9,10 @@ implemented in any programming language.
 
 
 # Contents
-    - [The Problem](#the-problem)
-        - [Knowing more about the problem](#know-more-about-the-problem)
-    - [The Plan](#the-plan)
+
+- [The Problem](#the-problem)
+    - [Knowing more about the problem](#know-more-about-the-problem)
+- [The Plan](#the-plan)
 
 
 # The Problem
