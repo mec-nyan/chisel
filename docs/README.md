@@ -8,7 +8,13 @@ This document is a language agnostic description of the problem and the proposed
 implemented in any programming language.
 
 
-# The problem
+# Contents
+    - [The Problem](#the-problem)
+        - [Knowing more about the problem](#know-more-about-the-problem)
+    - [The Plan](#the-plan)
+
+
+# The Problem
 
 We want to apply some formatting rules to some source code in some programming language.  Possible
 scenarios are:
@@ -106,3 +112,13 @@ end
 So when it comes to apply the formatting, we may choose something that's not exactly what we want
 but may be easier to implement in the beginning.  Later on we can tackle more complex rules and
 refine the implementation further.
+
+
+# The Plan
+
+Let's start with a simple solution to try out some ideas and get to know the problem a little bit
+better.  I'm going to keep things as simple as I can.
+
+Our basic algorithm should look like this:
+
+![basic_flow](./images/basic_flow.png)
