@@ -77,3 +77,10 @@ Testing/
 
 Cargo.lock
 target/
+
+###############
+# =*= Dia =*= #
+###############
+
+*.dia
+*.svg
